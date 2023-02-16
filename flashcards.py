@@ -1,5 +1,6 @@
 import os
 import random
+import time
 
 def select_file():
   # Get the path to the folder containing the question files
@@ -121,7 +122,8 @@ def menu():
           # Check if all boxes are empty
           if not any(boxes):
               print("Congratulations, you have completed all the flashcards!")
-
+              time.sleep(2)
+                 
       elif choice == "2":
           # Add flashcards
           add_flashcard(flashcards)
