@@ -10,14 +10,13 @@ def select_file():
   question_files = [f for f in files if f.endswith('.csv')]
 
   # Display the list of available question files
-  print("Available question files:")
+  print("Available question files:\n")
   for i, filename in enumerate(question_files):
     print(f"{i+1}. {filename}")
-  print("Hello")
   # Prompt the user to choose a file
   while True:
     try:
-      choice = int(input("Enter the number of the file you want to use: "))
+      choice = int(input("\nEnter the number of the file you want to use: "))
       filename = question_files[choice-1]
       break
     except (ValueError, IndexError):
@@ -39,6 +38,7 @@ def load_questions(filename):
 
 # Function to display the menu and get the user's choice
 def get_menu_choice():
+    os.system('clear')
     print("Menu:")
     print("1. Study flashcards")
     print("2. Add flashcards")
@@ -59,12 +59,21 @@ def add_flashcard(flashcards):
 boxes = [[], [], [], []]
 
 def menu():
+  os.system('clear')
+  print("=================================================")
+  print("=                                               =")
+  print("=        F l a s h c a r d   T e s t e r        =")
+  print("=                                               =")
+  print("=================================================")
+  print()
   # Ask the user if they want to load questions from a file
   load_from_file = input("Do you want to load questions from a file? (y/n) ")
   if load_from_file.lower() == "y":
+    os.system('clear')
     filename = select_file()
     flashcards = load_questions(filename)
   else:
+    os.system('clear')
     print("Goodbye!")
     quit()
   
@@ -74,6 +83,13 @@ def menu():
       choice = get_menu_choice()
 
       if choice == "1":
+          title = os.path.basename(filename)
+          os.system('clear')
+          title = title.strip(".csv")
+          print("="*len(title))
+          print(title)
+          print("="*len(title))
+          print()
           # Study flashcards
           # Shuffle the order of the flashcards in the current box
           current_box = boxes[0]
